@@ -54,7 +54,7 @@ const header = () => {
             </a>
           </li>
           <li>
-            <div class="circle inline-block">PR</div>
+            <div class="circle bg-blue-500 text-white rounded-full bg-white flex items-center justify-center">PR</div>
           </li>
           <li class="mr-2">
             <a class="inline-block py-2 px-4 text-black" href="#">
