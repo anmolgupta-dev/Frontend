@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+import Modal from "./modal";
 import { Constants } from "../util/constants";
 
 function FilterComponent({ title, filterRoute, showMore = false }) {
   let [filterData, setFilterData] = React.useState("");
+  let [showModal, setShowModal] = React.useState(false);
 
   const fetchData = React.useCallback(() => {
     axios({
@@ -41,7 +43,8 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
     <div className="App mb-3 box-border p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
       <div className="font-semibold">{title}</div>
       {renderFilterData(filterData)}
-      {showMore && <div className="mt-5 text-blue-500">Show more</div>}
+      {showMore && <div className="mt-5 text-blue-500" onClick={() => {setShowModal(!showModal)}}>Show more</div>}
+      {showModal && <div>{<Modal department={filterData}/>}</div>}
     </div>
   );
 }
