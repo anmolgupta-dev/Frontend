@@ -1,17 +1,17 @@
 const footer = () => {
   return (
     <div>
-      <div class="w-full flex">
-        <div class="w-3/4">About us</div>
-        <div class="w-1/3">Sitemap</div>
-        <div class="w-1/3">Privacy</div>
+      <div className="w-full flex">
+        <div className="w-3/4">About us</div>
+        <div className="w-1/3">Sitemap</div>
+        <div className="w-1/3">Privacy</div>
       </div>
-      <div class="flex">
-        <div class="w-2/4">
+      <div className="flex">
+        <div className="w-2/4">
           We are team of nurses, doctors, technologists and executives dedicated
           to help nurses find jobs that they love
         </div>
-        <div class="w-1/4 ml-20">
+        <div className="w-1/4 ml-20">
           <ul>
             <li>
               Nurses
@@ -27,7 +27,7 @@ const footer = () => {
             </li>
           </ul>
         </div>
-        <div class="w-1/4">
+        <div className="w-1/4">
           <ul>
             <li>
               Nurses
