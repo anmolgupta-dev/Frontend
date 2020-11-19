@@ -9,7 +9,7 @@ const footer = () => {
           <div className="mt-5">All copyrights reserved © 2020 - Health Explore</div>
         </div>
       </div>
-      <div className="w-1/4">
+      <div className="w-1/5 ml-6">
         <div className="font-bold">Sitemap</div>
         <div>
           <ul>
@@ -20,7 +20,7 @@ const footer = () => {
           </ul>
         </div>
       </div>
-      <div className="w-1/4">
+      <div className="w-1/5">
         <div className="font-bold">Privacy</div>
         <div>
           <ul>
