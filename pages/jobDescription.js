@@ -41,7 +41,7 @@ const JobDescription = ({ name, jobId }) => {
         </div>
         <div className="w-full flex pb-2">
           <div className="w-1/3 font-bold">Summary:</div>
-          <div clclassNameass="w-1/3">{jobDescription.description}</div>
+          <div className="w-1/3">{jobDescription.description}</div>
           <div className="float-right w-1/3 pl-40">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Job details
