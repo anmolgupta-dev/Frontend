@@ -1,5 +1,6 @@
 import jobComponent from "./jobDetail";
 import header from "./header";
+import footer from "./footer";
 import FilterComponent from "./filterComponent";
 import { Constants } from "../util/constants";
 
@@ -27,9 +28,12 @@ const mainComponent = () => {
             filterRoute={Constants.WEB_SERVICE_ROUTES.EXPERIENCES}
           />
         </div>
-          <div className="w-3/4 box-border ml-3 p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
-            <div>{jobComponent()}</div>
-          </div>
+        <div className="w-3/4 box-border ml-3 p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
+          <div>{jobComponent()}</div>
+        </div>
+      </div>
+      <div className="mt-16 box-border ml-3 p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
+        <div>{footer()}</div>
       </div>
     </div>
   );
