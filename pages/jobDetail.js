@@ -5,8 +5,104 @@ const jobComponent = (props) => {
       name: "Mammoth Hospital",
       job_title: "LPN Charge Nurse",
     },
+    {
+      total_jobs_in_hospital: 7,
+      name: "Fountain Valley Rgnl Hosp And Med Ctr - Euclid",
+      job_title: "Certified Nurse Anesthetist",
+    },
+    {
+      total_jobs_in_hospital: 6,
+      name: "Stanislaus Surgical Hospital",
+      job_title: "Plastic Surgery Nurse Practitioner",
+    },
+    {
+      total_jobs_in_hospital: 8,
+      name: "Eastside Medical Center",
+      job_title: "Ambulatory Pacu Nurse",
+    },
+    {
+      total_jobs_in_hospital: 7,
+      name: "Candler County Hospital",
+      job_title: "Psychiatric Nurse Practitioner",
+    },
+    {
+      total_jobs_in_hospital: 7,
+      name: "Jerold Phelps Community Hospital",
+      job_title: "Scrub Nurse",
+    },
+    {
+      total_jobs_in_hospital: 8,
+      name: "Porterville Developmental Center",
+      job_title: "Emergency Room Registered Nurse",
+    },
+    {
+      total_jobs_in_hospital: 9,
+      name: "Miller County Hospital",
+      job_title: "Legal Nurse Consultant",
+    },
+    {
+      total_jobs_in_hospital: 5,
+      name: "Piedmont Rockdale Hospital",
+      job_title: "BSN Nurse",
+    },
+    {
+      total_jobs_in_hospital: 2,
+      name: "Jefferson Hospital",
+      job_title: "Cardiovascular Nurse",
+    },
+    {
+      total_jobs_in_hospital: 4,
+      name: "Union General Hospital",
+      job_title: "Home Care Nurse",
+    },
+    {
+      total_jobs_in_hospital: 5,
+      name: "Tulane - Lakeside Hospital",
+      job_title: "LPN Primary Care",
+    },
+    {
+      total_jobs_in_hospital: 4,
+      name: "Warm Springs Medical Center",
+      job_title: "Head OR Nurse",
+    },
+    {
+      total_jobs_in_hospital: 6,
+      name: "St. James Behavioral Health Hospital",
+      job_title: "Public Health Nurse",
+    },
+    {
+      total_jobs_in_hospital: 6,
+      name: "Tulane Medical Center",
+      job_title: "LPN RN Telemetry",
+    },
+    {
+      total_jobs_in_hospital: 5,
+      name: "Franklin Foundation Hospital",
+      job_title: "Bone Marrow Transplant Nurse",
+    },
+    {
+      total_jobs_in_hospital: 4,
+      name: "Physicians Medical Center",
+      job_title: "Anesthesiology Crna",
+    },
+    {
+      total_jobs_in_hospital: 5,
+      name: "Indiana University Health Transplant",
+      job_title: "Obstetrics Nurse",
+    },
+    {
+      total_jobs_in_hospital: 6,
+      name: "Abrom Kaplan Memorial Hospital",
+      job_title: "Burn Unit RN",
+    },
+    {
+      total_jobs_in_hospital: 8,
+      name: "St. James Parish Hospital",
+      job_title: "Assistant Nurse Manager",
+    },
   ];
-  const items = [
+
+  const jobitem = [
     {
       required_skills: [
         "Temperature Recording: Disposable Chemical Thermometer Oral",
@@ -329,22 +425,47 @@ const jobComponent = (props) => {
     },
   ];
 
-  const jobTitle = jobs.map((data) => {
+  const jobDescription = (jobItems) => {
+    const description = jobItems.description;
     return (
-      <li key={data.total_jobs_in_hospital}>
-        {data.total_jobs_in_hospital} for {data.name}
-      </li>
+      <div>
+        <div class="w-full flex pb-2">
+          <div class="w-1/3 font-bold">Description:</div>
+          <div class="w-1/3">urinology</div>
+        </div>
+        <div class="w-full flex pb-2">
+          <div class="w-1/3 font-bold">Hours/shifts</div>
+          <div class="w-1/3">
+            {jobItems.hours} / {jobItems.work_schedule}
+          </div>
+        </div>
+        <div class="w-full flex pb-2">
+          <div class="w-1/3 font-bold">Summary:</div>
+          <div class="w-1/3">{jobItems.description}</div>
+          <div class="float-right w-1/3 pl-48">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Job details
+            </button>
+            <div class="pl-6">
+              <button class="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Button
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
-  });
+  };
+
   const jobItems = (items) => {
     const jobDetailItems = items.map((item) => {
       return (
-        <li>
+        <li class="mt-5 my-4 pb-1 border-b">
           <div>
-            <div>{item.job_title}</div>
+            <div class="font-bold">{item.job_title}</div>
             <div class="float-right">3 weaks ago</div>
           </div>
-          <div>
+          <div class="pt-1 bottom-b pb-8">
             {item.job_type} | {item.salary_range[0]} - {item.salary_range[1]} an
             hour | {item.city}
           </div>
@@ -354,45 +475,36 @@ const jobComponent = (props) => {
     });
     return jobDetailItems;
   };
-  const jobDescription = (jobItems) => {
-    const description = jobItems.description;
+
+  const jobTitle = jobs.map((data) => {
     return (
       <div>
-        <div>
-          <div>Description:</div>
-          <div></div>
-        </div>
-        <div>
-          <div>Hours/shifts</div>
-          <div class="float-right">
-            {jobItems.hours} / {jobItems.work_schedule}
-          </div>
-        </div>
-        <div>
-          <div>Summary:</div>
-          <div class="float-right">{jobItems.description}</div>
-        </div>
+        <li class="mt-16 my-4 pb-1 border-b" key={data.total_jobs_in_hospital}>
+          {data.total_jobs_in_hospital} for {data.name}
+        </li>
+        <div>{jobItems(jobitem)}</div>
       </div>
     );
-  };
+  });
+
   return (
     <div>
-      <div class="flex p-1">
+      <div class="flex p-1 pt-5">
         <div class="mr-64">7,753 job postings</div>
         <div class="flex">
-          <div class="text-gray-400 mr-16">Sort by</div>
+          <div class="text-gray-400 ml-5 mr-5">Sort by</div>
           <ul class="flex">
-            <li class="mr-16">Location</li>
-            <li class="mr-16">Role</li>
-            <li class="mr-16">Department</li>
-            <li class="mr-16">Education</li>
-            <li class="mr-16">Experience</li>
+            <li class="mr-5">Location</li>
+            <li class="mr-5">Role</li>
+            <li class="mr-5">Department</li>
+            <li class="mr-5">Education</li>
+            <li class="mr-5">Experience</li>
           </ul>
         </div>
       </div>
       <div>
         <ul>{jobTitle}</ul>
-        <ul>{jobItems(items)}</ul>
+        {/* <ul>{jobItems(items)}</ul> */}
       </div>
     </div>
   );
