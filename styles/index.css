@@ -1,6 +1,2 @@
-@tailwind preflight;
+@tailwind base;
 @tailwind utilities;
-
-body {
-  @apply bg-grey-light p-12;
-}
