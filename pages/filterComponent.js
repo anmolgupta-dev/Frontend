@@ -41,7 +41,7 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
     <div className="App mb-3 box-border p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
       <div className="font-semibold">{title}</div>
       {renderFilterData(filterData)}
-      {showMore && <div>Show more</div>}
+      {showMore && <div className="mt-5 text-blue-500">Show more</div>}
     </div>
   );
 }

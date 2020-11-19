@@ -57,7 +57,7 @@ const jobComponent = () => {
   return (
     <div>
       <div className="flex p-1 pt-5">
-        <div className="mr-48">7,753 job postings</div>
+        <div className="mr-40 w-1/4">7,753 job postings</div>
         <div className="flex">
           <div className="text-gray-400 ml-5 mr-5">Sort by</div>
           <ul className="flex">
