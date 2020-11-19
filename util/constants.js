@@ -7,7 +7,8 @@ export const Constants = {
     DEPARTMENTS: '/departments',
     ALL_DEPARTMENTS: '/departments/all',
     JOBS: '/jobs',
-    JOB_ITEMS: '/job/items'
+    JOB_ITEMS: '/job/items',
+    JOB_DESCRIPTION: '/job/description',
   },
   FILTER_TITLE: {
     JOB_TYPE: 'JOB TYPE',
