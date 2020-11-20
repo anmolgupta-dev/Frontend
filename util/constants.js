@@ -1,5 +1,5 @@
 export const Constants = {
-  WEB_SERVICE_URL : "http://localhost:5000",
+  WEB_SERVICE_URL : "http://localhost:3008",
   WEB_SERVICE_ROUTES : {
     JOB_TYPES: '/jobTypes',
     WORK_SCHEDULES: '/workSchedules',
