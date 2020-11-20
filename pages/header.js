@@ -3,7 +3,7 @@ const header = () => {
     <div>
       <div className="p-4 shadow rounded bg-white">
         <ul class="flex">
-          <li class="mr-20">
+          <li class="mr-10">
             <a
               class="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-2 px-4 font-bold"
               href="#"
@@ -48,17 +48,13 @@ const header = () => {
               SALARY
             </a>
           </li>
-          <li class="mr-4 border-solid border-2 border-blue-500 rounded-full">
+          <li class="mr-4 border-solid border-2 border-blue-500 rounded-md">
             <a class="inline-block py-2 px-4 text-blue-500" href="#">
               CREATE JOB
             </a>
           </li>
           <li>
-            <img
-              class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-              src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            ></img>
+            <div class="circle inline-block">PR</div>
           </li>
           <li class="mr-2">
             <a class="inline-block py-2 px-4 text-black" href="#">
