@@ -1,11 +1,6 @@
+import fetch from 'isomorphic-unfetch';
+
 const jobComponent = (props) => {
-  const jobs = [
-    {
-      "total_jobs_in_hospital": 8,
-      "name": "Mammoth Hospital",
-      "job_title": "LPN Charge Nurse"
-    },
-  ]
   const items = [
     {
       "required_skills": [
@@ -361,7 +356,7 @@ const jobComponent = (props) => {
     }
   ]
   
-  const jobTitle = jobs.map((data) => {
+  const jobTitle = props.data.map((data) => {
     return (
     <li key={data.total_jobs_in_hospital}>{data.total_jobs_in_hospital} for {data.name}</li>
     );
@@ -405,5 +400,13 @@ const jobComponent = (props) => {
     </div>
   );
 };
+
+jobComponent.getInitialProps= async () => {
+  const res = await fetch('http://localhost:5000/jobs');
+  const data = await res.json();
+  return {
+    data
+  }
+}
 
 export default jobComponent;
