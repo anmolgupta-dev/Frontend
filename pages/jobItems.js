@@ -33,8 +33,8 @@ const JobItems = ({ name }) => {
       return (
         <li class='mt-5 my-4 pb-1 border-b' onClick={(event) => { event.stopPropagation(); setJobDescriptionToggle({ ...jobDescriptionToggle, [item.job_id]: !jobDescriptionToggle[item.job_id] })}}>
           <div>
-            <div class="font-bold">{item.job_title}</div>
-            <div class="float-right">3 weaks ago</div>
+            <div className="font-bold">{item.job_title}</div>
+            <div className="float-right">3 weaks ago</div>
           </div>
           <div class="pt-1 bottom-b pb-4">
             {item.job_type} | {item.salary_range[0]} - {item.salary_range[1]} an

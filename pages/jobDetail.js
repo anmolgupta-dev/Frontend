@@ -29,24 +29,30 @@ const jobComponent = () => {
       return;
     }
     const renderJobs = jobs.map((data) => {
-    let liClassName = "my-4 pb-1";
-    if(jobItemsToggle[data.name]) {
-      liClassName = 'my-4 pb-3 border-b';
-    }
-    return (
-      <div key={data.name+data.total_jobs_in_hospital} onClick={() => setJobItemsToggle({ ...jobItemsToggle, [data.name]: !jobItemsToggle[data.name] })}>
-        <li className={liClassName}>
-          <div className="flex flex-row">
-            <div className="circle inline-block bg-gray-500 text-white rounded-lg bg-white flex items-center justify-center">{data.name.slice(0, 2).toUpperCase()}</div>
-            <div className="pl-3 flex items-center justify-center">{data.total_jobs_in_hospital} for {data.name}</div>
-          </div>
-        </li>
-        {jobItemsToggle[data.name] &&  <JobItems name={data.name}/>}
-      </div>
-    );
-  });
-  return renderJobs;
-}
+      return (
+        <div
+          key={data.name + data.total_jobs_in_hospital}
+          onClick={() =>
+            setJobItemsToggle({
+              ...jobItemsToggle,
+              [data.name]: !jobItemsToggle[data.name],
+            })
+          }
+        >
+          <li className="mt-16 my-4 pb-1 border-b flex">
+            <div className="circle w-1/2 bg-gray-500 text-white rounded bg-white flex items-center justify-center">
+              {((data.name).slice(0,2)).toUpperCase()}
+            </div>
+            <div className="w-1/2 ml-5 pt-2">
+              {data.total_jobs_in_hospital} for {data.name}
+            </div>
+          </li>
+          {jobItemsToggle[data.name] && <JobItems name={data.name} />}
+        </div>
+      );
+    });
+    return renderJobs;
+  };
 
   return (
     <div>
@@ -59,7 +65,7 @@ const jobComponent = () => {
             <li className="mr-5">Role</li>
             <li className="mr-5">Department</li>
             <li className="mr-5">Education</li>
-            <li className="mr-5">Experience</li>
+            <li>Experience</li>
           </ul>
         </div>
       </div>
