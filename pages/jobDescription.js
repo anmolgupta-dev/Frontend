@@ -42,13 +42,13 @@ const JobDescription = ({ name, jobId }) => {
         <div className="w-full flex pb-2">
           <div className="w-1/3 font-bold">Summary:</div>
           <div className="w-1/3">{jobDescription.description}</div>
-          <div className="float-right w-1/3 pl-40">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <div className="w-1/3 text-right">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
               Job details
             </button>
             <div className="pl-6">
-              <button className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded">
-                Save Job
+              <button className="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded">
+                Save job
               </button>
             </div>
           </div>

@@ -29,6 +29,10 @@ const jobComponent = () => {
       return;
     }
     const renderJobs = jobs.map((data) => {
+      let liClassName = "my-4 pb-1 flex";
+      if(jobItemsToggle[data.name]) {
+        liClassName = "my-4 pb-3 border-b flex";
+      }
       return (
         <div
           key={data.name + data.total_jobs_in_hospital}
@@ -39,7 +43,7 @@ const jobComponent = () => {
             })
           }
         >
-          <li className="mt-16 my-4 pb-1 border-b flex">
+          <li className={liClassName}>
             <div className="circle w-1/2 bg-gray-500 text-white rounded bg-white flex items-center justify-center">
               {((data.name).slice(0,2)).toUpperCase()}
             </div>
