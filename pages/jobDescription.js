@@ -30,11 +30,11 @@ const JobDescription = ({ name, jobId }) => {
     return (
       <div>
         <div className="w-full flex pb-2">
-          <div className="w-1/3 font-bold">Description:</div>
+          <div className="w-1/3 font-bold">Department:</div>
           <div className="w-1/3">{department.join()}</div>
         </div>
         <div className="w-full flex pb-2">
-          <div className="w-1/3 font-bold">Hours/shifts</div>
+          <div className="w-1/3 font-bold">Hours/ shifts:</div>
           <div className="w-1/3">
             {jobDescription.hours} / {jobDescription.work_schedule}
           </div>
