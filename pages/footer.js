@@ -13,10 +13,10 @@ const footer = () => {
         <div className="font-bold">Sitemap</div>
         <div>
           <ul>
-            <li className="mt-5">Nurses</li>
-            <li className="mt-5">Employers</li>
-            <li className="mt-5">Social Networking</li>
-            <li className="mt-5 mb-5">Jobs</li>
+            <li className="mt-5 hover:underline"><a href="#">Nurses</a></li>
+            <li className="mt-5 hover:underline"><a href="#">Employers</a></li>
+            <li className="mt-5 hover:underline"><a href="#">Social Networking</a></li>
+            <li className="mt-5 mb-5 hover:underline"><a href="#">Jobs</a></li>
           </ul>
         </div>
       </div>
@@ -24,9 +24,9 @@ const footer = () => {
         <div className="font-bold">Privacy</div>
         <div>
           <ul>
-            <li className="mt-5">Terms of use</li>
-            <li className="mt-5">Privacy policy</li>
-            <li className="mt-5">Cookie policy</li>
+            <li className="mt-5 hover:underline"><a href="#">Terms of use</a></li>
+            <li className="mt-5 hover:underline"><a href="#">Privacy policy</a></li>
+            <li className="mt-5 hover:underline"><a href="#">Cookie policy</a></li>
           </ul>
         </div>
       </div>

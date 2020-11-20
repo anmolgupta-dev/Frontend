@@ -83,7 +83,7 @@ const header = () => {
           PR
         </div>
       </div>
-      <div className="w-full sm:mt-0 sm:mb-0 lg:mt-3 lg:mb-4 md:mb-0 lg:px-3">
+      <div className="w-full sm:mt-0 sm:mb-0 lg:mt-3 lg:mb-3 md:mb-0 lg:px-3">
         <input
           id="search-bs-class"
           className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
