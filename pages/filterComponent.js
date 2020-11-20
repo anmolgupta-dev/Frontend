@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Constants } from '../util/constants';
 
-function FilterComponent({title, filterRoute, showMore}) {
+function FilterComponent({title, filterRoute, showMore = false}) {
   let [filterData, setFilterData] = React.useState('');
 
   const fetchData = React.useCallback(() => {
@@ -40,6 +40,7 @@ function FilterComponent({title, filterRoute, showMore}) {
     <div className="App">
       <div>{title}</div>
       {renderFilterData(filterData)}
+      {showMore && <div>Show more</div>}
     </div>
   );
 }
