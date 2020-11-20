@@ -2,10 +2,9 @@ import React from "react";
 import axios from "axios";
 import { Constants } from "../util/constants";
 
-
 const JobDescription = ({ name, jobId }) => {
   let [jobDescription, setJobDescription] = React.useState({});
-  console.log({ jobId });
+
   const fetchData = React.useCallback(() => {
     axios({
       method: "GET",
@@ -23,12 +22,12 @@ const JobDescription = ({ name, jobId }) => {
   React.useEffect(() => {
     fetchData();
   }, [fetchData]);
-  // const description = jobItems.description;
+
   return (
     <div>
       <div class="w-full flex pb-2">
         <div class="w-1/3 font-bold">Description:</div>
-        <div class="w-1/3">urinology</div>
+        <div class="w-1/3">{jobDescription.department && jobDescription.department.join(',')}</div>
       </div>
       <div class="w-full flex pb-2">
         <div class="w-1/3 font-bold">Hours/shifts</div>
