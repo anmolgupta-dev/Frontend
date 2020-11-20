@@ -44,7 +44,7 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
       <div className="font-semibold">{title}</div>
       {renderFilterData(filterData)}
       {showMore && <div className="mt-5 text-blue-500" onClick={() => {setShowModal(!showModal)}}>Show more</div>}
-      {showModal && <div>{<Modal department={filterData}/>}</div>}
+      {showModal && <div>{<Modal setShowModal={setShowModal}/>}</div>}
     </div>
   );
 }
