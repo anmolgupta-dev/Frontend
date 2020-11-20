@@ -43,12 +43,12 @@ const JobDescription = ({ name, jobId }) => {
           <div className="lg:w-1/3 font-bold">Summary:</div>
           <div className="lg:w-1/3">{jobDescription.description}</div>
           <div className="lg:w-1/3 lg:text-right">
-            <div className="lg:w-full w-1/4">
+            <div className="lg:w-full mr-5 inline-block">
               <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                 Job details
               </button>
             </div>
-            <div className="lg:w-full w-1/4 lg:pl-6">
+            <div className="lg:w-full lg:pl-6 inline-block">
               <button className="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded">
                 Save job
               </button>
