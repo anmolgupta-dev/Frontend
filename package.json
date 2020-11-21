@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev -p 3007",
     "build": "next build",
-    "start": "next start -p 3007"
+    "start": "next start -p 3007",
+    "forever": "npm run build && forever start -c 'npm start' ./"
   },
   "dependencies": {
     "axios": "^0.21.0",
