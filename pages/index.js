@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import fetch from "isomorphic-unfetch";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import JobComponent from "./jobDetail";
 import Header from "./header";
 import footer from "./footer";
@@ -8,19 +8,31 @@ import FilterComponent from "./filterComponent";
 import { Constants } from "../util/constants";
 
 const mainComponent = ({ jobs }) => {
-  const [searchText, setSearchText] = React.useState('');
+  const [searchText, setSearchText] = React.useState("");
   const router = useRouter();
   const onInputChange = (e) => {
     e.preventDefault();
     setSearchText(e.target.value.toLowerCase());
-  }
+  };
 
   React.useEffect(() => {
     if (searchText) {
-      router.push({
-        pathname: `/`,
-        query: { search: searchText },
-    }, undefined, { shallow: true });
+      router.push(
+        {
+          pathname: `/`,
+          query: { search: searchText },
+        },
+        undefined,
+        { shallow: true }
+      );
+    } else if (!searchText) {
+      router.push(
+        {
+          pathname: `/`,
+        },
+        undefined,
+        { shallow: true }
+      );
     }
   }, [searchText]);
 
@@ -48,7 +60,9 @@ const mainComponent = ({ jobs }) => {
           />
         </div>
         <div className="lg:w-3/4 w-full box-border lg:ml-3 p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
-          <div><JobComponent jobs={jobs} router={router}/></div>
+          <div>
+            <JobComponent jobsData={jobs} router={router} />
+          </div>
         </div>
       </div>
       <div className="mt-12 box-border p-4 border-4 border-solid bg-white appearance-none block py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none">
@@ -58,11 +72,12 @@ const mainComponent = ({ jobs }) => {
   );
 };
 
-
-mainComponent.getInitialProps = async() => {
-  const res = await fetch(`${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}`);
+mainComponent.getInitialProps = async () => {
+  const res = await fetch(
+    `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}`
+  );
   const data = await res.json();
   return { jobs: data };
-}
+};
 
 export default mainComponent;

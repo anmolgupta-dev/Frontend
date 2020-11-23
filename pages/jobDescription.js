@@ -5,11 +5,13 @@ import { Constants } from "../util/constants";
 const JobDescription = ({ name, jobId }) => {
   let [jobDescription, setJobDescription] = React.useState({});
 
-  const fetchData = async() => {
-    const res = await fetch(`${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}/?jobName=${name}&jobId=${jobId}`);
+  const fetchData = async () => {
+    const res = await fetch(
+      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}/?jobName=${name}&jobId=${jobId}`
+    );
     const data = await res.json();
     setJobDescription(data);
-  }
+  };
 
   React.useEffect(() => {
     fetchData();
