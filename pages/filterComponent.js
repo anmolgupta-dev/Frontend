@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import fetch from "isomorphic-unfetch";
 import Modal from "./modal";
 import { Constants } from "../util/constants";
 
@@ -7,22 +7,15 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
   let [filterData, setFilterData] = React.useState("");
   let [showModal, setShowModal] = React.useState(false);
 
-  const fetchData = React.useCallback(() => {
-    axios({
-      method: "GET",
-      url: `${Constants.WEB_SERVICE_URL}${filterRoute}`,
-    })
-      .then((response) => {
-        setFilterData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const fetchData = async () => {
+    const res = await fetch(`${Constants.WEB_SERVICE_URL}${filterRoute}`);
+    const filterDataJSON = await res.json();
+    setFilterData(filterDataJSON);
+  }
 
   React.useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, filterRoute);
 
   const renderFilterData = (filterData) => {
     if (!filterData) {

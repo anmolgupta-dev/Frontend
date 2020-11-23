@@ -1,26 +1,19 @@
 import React from "react";
-import axios from "axios";
+import fetch from "isomorphic-unfetch";
 import { Constants } from "../util/constants";
 
 const JobDescription = ({ name, jobId }) => {
   let [jobDescription, setJobDescription] = React.useState({});
-  const fetchData = React.useCallback(() => {
-    axios({
-      method: "GET",
-      url: `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}`,
-      params: { jobName: name, jobId },
-    })
-      .then((response) => {
-        setJobDescription(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
+  const fetchData = async() => {
+    const res = await fetch(`${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}/?jobName=${name}&jobId=${jobId}`);
+    const data = await res.json();
+    setJobDescription(data);
+  }
 
   React.useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [name]);
 
   const renderJobDescription = (jobDescription) => {
     const department = jobDescription.department;

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import fetch from "isomorphic-unfetch";
 import { Constants } from "../util/constants";
 import JobDescription from "./jobDescription";
 
@@ -7,25 +7,41 @@ const JobItems = ({ name }) => {
   let [items, setJobItems] = React.useState([]);
   let [jobDescriptionToggle, setJobDescriptionToggle] = React.useState({});
 
-  const fetchData = React.useCallback(() => {
-    axios({
-      method: "GET",
-      url: `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_ITEMS}`,
-      params: { jobName: name },
-    })
-      .then((response) => {
-        setJobItems(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const fetchData = async() => {
+    const res = await fetch(`${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_ITEMS}/?jobName=${name}`);
+    const data = await res.json();
+    setJobItems(data);
+  }
 
   React.useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [name]);
+
+  const orderBy = (sortingKeys) => {
+    items.sort((jobItem1, jobItem2) => {
+      let cumulativeResult = 0;
+      sortingKeys.forEach(sortingKey => {
+        let sortBy = Object.keys(sortingKey)[0];
+        let order = sortingKey[sortBy];
+        let compareResult;
+        const value1 = jobItem1[sortBy];
+        const value2 = jobItem2[sortBy];
+        if(typeof value1 === 'string') {
+          compareResult = value1.localeCompare(value2);
+        } else if (value1 instanceof Array) {
+          compareResult = value1.length - value2.length;
+        }
+        if(order === "desc") {
+          compareResult = (-1) * compareResult;
+        }
+        cumulativeResult = cumulativeResult || compareResult;
+      });
+      return cumulativeResult;
+    });
+  }
 
   const jobDetailItems = () => {
+    const sortingKeys = [{department: "desc"}, {location: "desc"}]
     if (!items) {
       return;
     }

@@ -1,4 +1,8 @@
-const header = () => {
+import SearchRounded from "@material-ui/icons/SearchRounded";
+
+
+
+const Header = ({ onInputChange }) => {
   return (
     <div>
       <div className="p-4 shadow rounded bg-white flex">
@@ -88,6 +92,7 @@ const header = () => {
           id="search-bs-class"
           className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
           type="text"
+          onChange={onInputChange}
           placeholder="Search for any job, title, keywords, or company"
         />
       </div>
@@ -95,4 +100,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;
