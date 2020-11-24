@@ -1,13 +1,13 @@
-import React from "react";
-import fetch from "isomorphic-unfetch";
-import { Constants } from "../util/constants";
+import React from 'react';
+import fetch from 'isomorphic-unfetch';
+import { Constants } from '../util/constants';
 
 const JobDescription = ({ name, jobId }) => {
-  let [jobDescription, setJobDescription] = React.useState({});
+  const [jobDescription, setJobDescription] = React.useState({});
 
   const fetchData = async () => {
     const res = await fetch(
-      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}/?jobName=${name}&jobId=${jobId}`
+      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_DESCRIPTION}/?jobName=${name}&jobId=${jobId}`,
     );
     const data = await res.json();
     setJobDescription(data);
@@ -18,7 +18,7 @@ const JobDescription = ({ name, jobId }) => {
   }, [name]);
 
   const renderJobDescription = (jobDescription) => {
-    const department = jobDescription.department;
+    const { department } = jobDescription;
     if (!jobDescription || !department) {
       return;
     }
@@ -31,7 +31,11 @@ const JobDescription = ({ name, jobId }) => {
         <div className="w-full lg:flex pb-2">
           <div className="lg:w-1/3 font-bold">Hours/ shifts:</div>
           <div className="lg:w-1/3">
-            {jobDescription.hours} / {jobDescription.work_schedule}
+            {jobDescription.hours}
+            {' '}
+            /
+            {' '}
+            {jobDescription.work_schedule}
           </div>
         </div>
         <div className="w-full lg:flex pb-2">
@@ -53,7 +57,9 @@ const JobDescription = ({ name, jobId }) => {
       </div>
     );
   };
-  return <div>{renderJobDescription(jobDescription)}</div>;
+
+  const jobDescriptionJsx = renderJobDescription(jobDescription);
+  return <div>{jobDescriptionJsx}</div>;
 };
 
 export default JobDescription;

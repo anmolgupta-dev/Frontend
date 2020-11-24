@@ -1,14 +1,14 @@
-import React from "react";
-import fetch from "isomorphic-unfetch";
-import { useRouter } from "next/router";
-import JobComponent from "../component/jobDetail";
-import Header from "../component/header";
-import footer from "../component/footer";
-import FilterComponent from "../component/filterComponent";
-import { Constants } from "../util/constants";
+import React from 'react';
+import fetch from 'isomorphic-unfetch';
+import { useRouter } from 'next/router';
+import JobComponent from '../component/jobDetail';
+import Header from '../component/header';
+import footer from '../component/footer';
+import FilterComponent from '../component/filterComponent';
+import { Constants } from '../util/constants';
 
 const mainComponent = ({ jobs }) => {
-  const [searchText, setSearchText] = React.useState("");
+  const [searchText, setSearchText] = React.useState('');
   const router = useRouter();
   const onInputChange = (text) => {
     setSearchText(text.toLowerCase());
@@ -18,26 +18,26 @@ const mainComponent = ({ jobs }) => {
     if (searchText) {
       router.push(
         {
-          pathname: `/`,
+          pathname: '/',
           query: { search: searchText },
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     } else if (!searchText) {
       router.push(
         {
-          pathname: `/`,
+          pathname: '/',
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
   }, [searchText]);
 
   return (
     <div className="bg-gray-100 h-full w-full">
-      {<Header onInputChange={onInputChange} />}
+      <Header onInputChange={onInputChange} />
       <div className="flex lg:mt-3 lg:px-3">
         <div className="w-1/4 lg:block hidden">
           <FilterComponent
@@ -47,7 +47,7 @@ const mainComponent = ({ jobs }) => {
           <FilterComponent
             title={Constants.FILTER_TITLE.DEPARTMENT}
             filterRoute={Constants.WEB_SERVICE_ROUTES.DEPARTMENTS}
-            showMore={true}
+            showMore
           />
           <FilterComponent
             title={Constants.FILTER_TITLE.WORK_SCHEDULE}
@@ -73,7 +73,7 @@ const mainComponent = ({ jobs }) => {
 
 mainComponent.getInitialProps = async () => {
   const res = await fetch(
-    `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}`
+    `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}`,
   );
   const data = await res.json();
   return { jobs: data };

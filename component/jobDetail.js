@@ -1,23 +1,23 @@
-import React from "react";
-import fetch from "isomorphic-unfetch";
+import React from 'react';
+import fetch from 'isomorphic-unfetch';
 import {
   KeyboardArrowUpRounded,
   KeyboardArrowDownRounded,
-} from "@material-ui/icons";
-import JobItems from "./jobItems";
-import { Constants } from "../util/constants";
+} from '@material-ui/icons';
+import JobItems from './jobItems';
+import { Constants } from '../util/constants';
 
 const SortArrow = ({ direction, fieldName }) => {
   if (!direction[fieldName]) {
     return <></>;
   }
-  if (direction[fieldName] === "asc") {
+  if (direction[fieldName] === 'asc') {
     return (
       <div className="w-1/12">
         <KeyboardArrowUpRounded />
       </div>
     );
-  } else if (direction[fieldName] === "desc") {
+  } if (direction[fieldName] === 'desc') {
     return (
       <div>
         <KeyboardArrowDownRounded />
@@ -27,17 +27,17 @@ const SortArrow = ({ direction, fieldName }) => {
 };
 
 const JobComponent = ({ jobsData, router }) => {
-  let [jobs, setJobsData] = React.useState(jobsData);
+  const [jobs, setJobsData] = React.useState(jobsData);
   // let [searchText, setSearchText] = React.useState('');
-  let [jobItemsToggle, setJobItemsToggle] = React.useState({});
-  let [direction, setDirection] = React.useState({});
-  let [value, setValue] = React.useState([]);
+  const [jobItemsToggle, setJobItemsToggle] = React.useState({});
+  const [direction, setDirection] = React.useState({});
+  const [value, setValue] = React.useState([]);
   // const router = useRouter();
 
   const fetchData = async () => {
-    const searchText = router.query.search || "";
+    const searchText = router.query.search || '';
     const res = await fetch(
-      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}/?searchText=${searchText}`
+      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOBS}/?searchText=${searchText}`,
     );
     const data = await res.json();
     setJobsData(data);
@@ -54,34 +54,34 @@ const JobComponent = ({ jobsData, router }) => {
   const updateQuery = (value) => {
     router.push(
       {
-        pathname: `/`,
+        pathname: '/',
         query: { ...router.query, [value]: direction[value] },
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
     if (!direction[value]) {
-      const query = router.query;
+      const { query } = router;
       // const value = router.query
       delete query[value];
       router.push(
         {
-          pathname: `/`,
+          pathname: '/',
           query: { ...router.query },
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
   };
 
   const switchDirection = (value) => {
     if (!direction[value]) {
-      setDirection({ ...direction, [value]: "desc" });
-    } else if (direction[value] === "desc") {
-      setDirection({ ...direction, [value]: "asc" });
+      setDirection({ ...direction, [value]: 'desc' });
+    } else if (direction[value] === 'desc') {
+      setDirection({ ...direction, [value]: 'asc' });
     } else {
-      setDirection("");
+      setDirection('');
     }
   };
 
@@ -95,26 +95,28 @@ const JobComponent = ({ jobsData, router }) => {
       return;
     }
     const renderJobs = jobs.map((data) => {
-      let liClassName = "my-4 pb-1 flex";
+      let liClassName = 'my-4 pb-1 flex';
       if (jobItemsToggle[data.name]) {
-        liClassName = "my-4 pb-3 border-b flex";
+        liClassName = 'my-4 pb-3 border-b flex';
       }
       return (
         <div
           key={data.name + data.total_jobs_in_hospital}
-          onClick={() =>
-            setJobItemsToggle({
+          onClick={() => setJobItemsToggle({
               ...jobItemsToggle,
               [data.name]: !jobItemsToggle[data.name],
-            })
-          }
+            })}
         >
           <li className={liClassName}>
             <div className="circle w-1/2 bg-gray-500 text-white rounded bg-white flex items-center justify-center">
               {data.name.slice(0, 2).toUpperCase()}
             </div>
             <div className="lg:w-1/2 ml-5 pt-2">
-              {data.total_jobs_in_hospital} for {data.name}
+              {data.total_jobs_in_hospital}
+              {' '}
+              for
+              {' '}
+              {data.name}
             </div>
           </li>
           {jobItemsToggle[data.name] && (
@@ -135,47 +137,47 @@ const JobComponent = ({ jobsData, router }) => {
             <li
               className="flex"
               onClick={() => {
-                setValueAndSwitchDirection("location");
+                setValueAndSwitchDirection('location');
               }}
             >
               <a href="#">Location</a>
-              <SortArrow direction={direction} fieldName={"location"} />
+              <SortArrow direction={direction} fieldName="location" />
             </li>
             <li
               className="flex"
               onClick={() => {
-                setValueAndSwitchDirection("job_title");
+                setValueAndSwitchDirection('job_title');
               }}
             >
               <a href="#">Role</a>
-              <SortArrow direction={direction} fieldName={"job_title"} />
+              <SortArrow direction={direction} fieldName="job_title" />
             </li>
             <li
               className="flex"
               onClick={() => {
-                setValueAndSwitchDirection("department");
+                setValueAndSwitchDirection('department');
               }}
             >
               <a href="#">Department</a>
-              <SortArrow direction={direction} fieldName={"department"} />
+              <SortArrow direction={direction} fieldName="department" />
             </li>
             <li
               className="flex"
               onClick={() => {
-                setValueAndSwitchDirection("required_skills");
+                setValueAndSwitchDirection('required_skills');
               }}
             >
               <a href="#">Education</a>
-              <SortArrow direction={direction} fieldName={"required_skills"} />
+              <SortArrow direction={direction} fieldName="required_skills" />
             </li>
             <li
               className="flex"
               onClick={() => {
-                setValueAndSwitchDirection("experience");
+                setValueAndSwitchDirection('experience');
               }}
             >
               <a href="#">Experience</a>
-              <SortArrow direction={direction} fieldName={"experience"} />
+              <SortArrow direction={direction} fieldName="experience" />
             </li>
           </ul>
         </div>

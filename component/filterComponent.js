@@ -1,11 +1,11 @@
-import React from "react";
-import fetch from "isomorphic-unfetch";
-import Modal from "../component/modal";
-import { Constants } from "../util/constants";
+import React from 'react';
+import fetch from 'isomorphic-unfetch';
+import Modal from './modal';
+import { Constants } from '../util/constants';
 
 function FilterComponent({ title, filterRoute, showMore = false }) {
-  let [filterData, setFilterData] = React.useState("");
-  let [showModal, setShowModal] = React.useState(false);
+  const [filterData, setFilterData] = React.useState('');
+  const [showModal, setShowModal] = React.useState(false);
 
   const fetchData = async () => {
     const res = await fetch(`${Constants.WEB_SERVICE_URL}${filterRoute}`);
@@ -21,18 +21,16 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
     if (!filterData) {
       return;
     }
-    const jobDetailItems = filterData.map((filterItem) => {
-      return (
-        <div className="mt-5" key={filterItem.key}>
-          <a className="hover:underline" href="#">
-            {filterItem.key}
-          </a>
-          <span className="pl-2 text-xs text-gray-400">
-            {filterItem.doc_count}
-          </span>
-        </div>
-      );
-    });
+    const jobDetailItems = filterData.map((filterItem) => (
+      <div className="mt-5" key={filterItem.key}>
+        <a className="hover:underline" href="#">
+          {filterItem.key}
+        </a>
+        <span className="pl-2 text-xs text-gray-400">
+          {filterItem.doc_count}
+        </span>
+      </div>
+      ));
     return jobDetailItems;
   };
 
@@ -50,7 +48,7 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
           <a href="#">Show more</a>
         </div>
       )}
-      {showModal && <div>{<Modal setShowModal={setShowModal} />}</div>}
+      {showModal && <div><Modal setShowModal={setShowModal} /></div>}
     </div>
   );
 }
