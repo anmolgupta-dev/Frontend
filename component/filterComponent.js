@@ -45,7 +45,7 @@ function FilterComponent({ title, filterRoute, showMore = false }) {
             setShowModal(!showModal);
           }}
         >
-          <a href="#">Show more</a>
+          <div className="cursor-pointer">Show more</div>
         </div>
       )}
       {showModal && <div><Modal setShowModal={setShowModal} /></div>}

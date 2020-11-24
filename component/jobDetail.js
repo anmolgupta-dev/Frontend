@@ -51,29 +51,29 @@ const JobComponent = ({ jobsData, router }) => {
     updateQuery(value);
   }, [direction]);
 
-  const updateQuery = (value) => {
+ const updateQuery = (value) => {
+  router.push(
+    {
+      pathname: '/',
+      query: { ...router.query, [value]: direction[value] },
+    },
+    undefined,
+    { shallow: true },
+  );
+  if (!direction[value]) {
+    const { query } = router;
+    // const value = router.query
+    delete query[value];
     router.push(
       {
         pathname: '/',
-        query: { ...router.query, [value]: direction[value] },
+        query: { ...router.query },
       },
       undefined,
       { shallow: true },
     );
-    if (!direction[value]) {
-      const { query } = router;
-      // const value = router.query
-      delete query[value];
-      router.push(
-        {
-          pathname: '/',
-          query: { ...router.query },
-        },
-        undefined,
-        { shallow: true },
-      );
-    }
-  };
+  }
+ }
 
   const switchDirection = (value) => {
     if (!direction[value]) {
@@ -140,7 +140,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection('location');
               }}
             >
-              <a href="#">Location</a>
+              <div className="cursor-pointer">Location</div>
               <SortArrow direction={direction} fieldName="location" />
             </li>
             <li
@@ -149,7 +149,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection('job_title');
               }}
             >
-              <a href="#">Role</a>
+              <div className="cursor-pointer">Role</div>
               <SortArrow direction={direction} fieldName="job_title" />
             </li>
             <li
@@ -158,7 +158,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection('department');
               }}
             >
-              <a href="#">Department</a>
+              <div className="cursor-pointer">Department</div>
               <SortArrow direction={direction} fieldName="department" />
             </li>
             <li
@@ -167,7 +167,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection('required_skills');
               }}
             >
-              <a href="#">Education</a>
+              <div className="cursor-pointer">Education</div>
               <SortArrow direction={direction} fieldName="required_skills" />
             </li>
             <li
@@ -176,7 +176,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection('experience');
               }}
             >
-              <a href="#">Experience</a>
+              <div className="cursor-pointer">Experience</div>
               <SortArrow direction={direction} fieldName="experience" />
             </li>
           </ul>
