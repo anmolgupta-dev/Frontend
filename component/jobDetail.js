@@ -73,7 +73,7 @@ const JobComponent = ({ jobsData, router }) => {
       { shallow: true },
     );
   }
- }
+ };
 
   const switchDirection = (value) => {
     if (!direction[value]) {

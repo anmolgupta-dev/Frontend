@@ -4,25 +4,20 @@ import { Constants } from '../util/constants';
 import JobDescription from './jobDescription';
 
 const JobItems = ({ name, router }) => {
-  const [items, setJobItems] = React.useState([]);
+  const [jobItems, setJobItems] = React.useState([]);
+  const [displayJobItems, setDisplayJobItems] = React.useState([]);
   const [jobDescriptionToggle, setJobDescriptionToggle] = React.useState({});
 
-  const fetchData = async () => {
-    const searchText = router.query.search || '';
-    const res = await fetch(
-      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_ITEMS}/?jobName=${name}&searchText=${searchText}`,
-    );
-    const data = await res.json();
-    setJobItems(data);
-  };
-
-  React.useEffect(() => {
-    fetchData();
-  }, [router.query.search, name]);
-
-  const orderBy = (sortingKeys) => {
+  const sortData = (items) => {
+    const {
+      location, role, department, education, experience,
+     } = router.query;
+    const sortingKeys = {
+      location, role, department, education, experience,
+     };
     const sortingKeysArray = Object.keys(sortingKeys);
-    items.sort((jobItem1, jobItem2) => {
+    const sortedJobItems = [...items];
+    sortedJobItems.sort((jobItem1, jobItem2) => {
       let cumulativeResult = 0;
       sortingKeysArray.forEach((sortingKey) => {
         const order = sortingKeys[sortingKey];
@@ -36,29 +31,40 @@ const JobItems = ({ name, router }) => {
             compareResult = value1.length - value2.length;
           }
           if (order === 'desc') {
-            compareResult = -1 * compareResult;
+            compareResult *= -1;
           }
           cumulativeResult = cumulativeResult || compareResult;
         }
       });
       return cumulativeResult;
     });
+    setDisplayJobItems(sortedJobItems);
+  };
+
+  const fetchData = async () => {
+    const searchText = router.query.search || '';
+    const res = await fetch(
+      `${Constants.WEB_SERVICE_URL}${Constants.WEB_SERVICE_ROUTES.JOB_ITEMS}/?jobName=${name}&searchText=${searchText}`,
+    );
+    const data = await res.json();
+    setJobItems(data);
+    setDisplayJobItems(data);
+    sortData(data);
   };
 
   React.useEffect(() => {
-    const {
- location, role, department, education, experience,
-} = router.query;
-    orderBy({
- location, role, department, education, experience,
-});
+    fetchData();
+  }, [router.query.search, name]);
+
+  React.useEffect(() => {
+    sortData(jobItems);
   }, [router.query]);
 
   const jobDetailItems = () => {
-    if (!items) {
+    if (!displayJobItems) {
       return;
     }
-    const renderJobItems = items.map((item, index) => (
+    const renderJobItems = displayJobItems.map((item, index) => (
       <li
         className="mt-5 my-4 pb-1 border-b"
         key={item.job_title}
@@ -95,7 +101,7 @@ const JobItems = ({ name, router }) => {
     return renderJobItems;
   };
 
-  const jobItemJsx = jobDetailItems(items);
+  const jobItemJsx = jobDetailItems();
   return <div>{jobItemJsx}</div>;
 };
 

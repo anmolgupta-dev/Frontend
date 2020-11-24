@@ -15,16 +15,16 @@ const footer = () => (
       <div>
         <ul>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Nurses</div>
+            <div className="cursor-pointer">Nurses</div>
           </li>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Employers</div>
+            <div className="cursor-pointer">Employers</div>
           </li>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Social Networking</div>
+            <div className="cursor-pointer">Social Networking</div>
           </li>
           <li className="mt-5 mb-5 hover:underline">
-          <div className="cursor-pointer">Jobs</div>
+            <div className="cursor-pointer">Jobs</div>
           </li>
         </ul>
       </div>
@@ -34,13 +34,13 @@ const footer = () => (
       <div>
         <ul>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Terms of use</div>
+            <div className="cursor-pointer">Terms of use</div>
           </li>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Privacy policy</div>
+            <div className="cursor-pointer">Privacy policy</div>
           </li>
           <li className="mt-5 hover:underline">
-          <div className="cursor-pointer">Cookie policy</div>
+            <div className="cursor-pointer">Cookie policy</div>
           </li>
         </ul>
       </div>
