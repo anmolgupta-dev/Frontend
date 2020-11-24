@@ -1,18 +1,17 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
-import JobComponent from "./jobDetail";
-import Header from "./header";
-import footer from "./footer";
-import FilterComponent from "./filterComponent";
+import JobComponent from "../component/jobDetail";
+import Header from "../component/header";
+import footer from "../component/footer";
+import FilterComponent from "../component/filterComponent";
 import { Constants } from "../util/constants";
 
 const mainComponent = ({ jobs }) => {
   const [searchText, setSearchText] = React.useState("");
   const router = useRouter();
-  const onInputChange = (e) => {
-    e.preventDefault();
-    setSearchText(e.target.value.toLowerCase());
+  const onInputChange = (text) => {
+    setSearchText(text.toLowerCase());
   };
 
   React.useEffect(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
-import Modal from "./modal";
+import Modal from "../component/modal";
 import { Constants } from "../util/constants";
 
 function FilterComponent({ title, filterRoute, showMore = false }) {

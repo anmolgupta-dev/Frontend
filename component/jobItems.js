@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
 import { Constants } from "../util/constants";
-import JobDescription from "./jobDescription";
+import JobDescription from "../component/jobDescription";
 
 const JobItems = ({ name, router }) => {
   let [items, setJobItems] = React.useState([]);

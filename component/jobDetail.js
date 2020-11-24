@@ -1,6 +1,5 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
-// import { useRouter } from 'next/router';
 import {
   KeyboardArrowUpRounded,
   KeyboardArrowDownRounded,
@@ -61,6 +60,19 @@ const JobComponent = ({ jobsData, router }) => {
       undefined,
       { shallow: true }
     );
+    if (!direction[value]) {
+      const query = router.query;
+      // const value = router.query
+      delete query[value];
+      router.push(
+        {
+          pathname: `/`,
+          query: { ...router.query },
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
   };
 
   const switchDirection = (value) => {
@@ -126,7 +138,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection("location");
               }}
             >
-              <div>Location</div>
+              <a href="#">Location</a>
               <SortArrow direction={direction} fieldName={"location"} />
             </li>
             <li
@@ -135,7 +147,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection("job_title");
               }}
             >
-              <div>Role</div>
+              <a href="#">Role</a>
               <SortArrow direction={direction} fieldName={"job_title"} />
             </li>
             <li
@@ -144,7 +156,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection("department");
               }}
             >
-              <div>Department</div>
+              <a href="#">Department</a>
               <SortArrow direction={direction} fieldName={"department"} />
             </li>
             <li
@@ -153,7 +165,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection("required_skills");
               }}
             >
-              <div>Education</div>
+              <a href="#">Education</a>
               <SortArrow direction={direction} fieldName={"required_skills"} />
             </li>
             <li
@@ -162,7 +174,7 @@ const JobComponent = ({ jobsData, router }) => {
                 setValueAndSwitchDirection("experience");
               }}
             >
-              <div>Experience</div>
+              <a href="#">Experience</a>
               <SortArrow direction={direction} fieldName={"experience"} />
             </li>
           </ul>

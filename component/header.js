@@ -1,4 +1,12 @@
+import React from "react";
+
 const Header = ({ onInputChange }) => {
+  const [searchText, setSearchText] = React.useState("");
+  
+  const updateInput = (e) => {
+    setSearchText(e.target.value);
+  }
+
   return (
     <div>
       <div className="p-4 shadow rounded bg-white flex">
@@ -84,13 +92,15 @@ const Header = ({ onInputChange }) => {
         </div>
       </div>
       <div className="flex w-full sm:mt-0 sm:mb-0 lg:mt-3 lg:mb-3 md:mb-0 lg:px-3">
-        <input
-          id="search-bs-class"
-          className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
-          type="text"
-          onChange={onInputChange}
-          placeholder="Search for any job, title, keywords, or company"
-        />
+        <form className="appearance-none block w-full leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" onSubmit={(e) => { e.preventDefault(); onInputChange(searchText)}}>
+          <input
+            id="search-bs-class"
+            className="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none"
+            type="text"
+            onChange={updateInput}
+            placeholder="Search for any job, title, keywords, or company"
+          />
+        </form>
       </div>
     </div>
   );
